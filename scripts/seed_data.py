@@ -4,9 +4,11 @@ from sqlalchemy.orm import sessionmaker
 import uuid
 from datetime import datetime, timedelta
 import sys
+
 sys.path.append("..")
 from services.task_service.app.models.task import Task, TaskStatus, TaskPriority
 from services.task_service.app.config import get_settings
+
 
 async def seed():
     settings = get_settings()
@@ -21,7 +23,7 @@ async def seed():
                 status=TaskStatus.TODO,
                 priority=TaskPriority.HIGH,
                 created_by="admin",
-                due_date=datetime.utcnow() + timedelta(days=7)
+                due_date=datetime.utcnow() + timedelta(days=7),
             ),
             Task(
                 title="Implement user authentication",
@@ -30,7 +32,7 @@ async def seed():
                 priority=TaskPriority.HIGH,
                 created_by="admin",
                 assignee_id="user1",
-                due_date=datetime.utcnow() + timedelta(days=3)
+                due_date=datetime.utcnow() + timedelta(days=3),
             ),
             Task(
                 title="Write API documentation",
@@ -45,7 +47,7 @@ async def seed():
                 status=TaskStatus.TODO,
                 priority=TaskPriority.MEDIUM,
                 created_by="admin",
-                due_date=datetime.utcnow() + timedelta(days=14)
+                due_date=datetime.utcnow() + timedelta(days=14),
             ),
             Task(
                 title="Set up monitoring",
@@ -53,12 +55,13 @@ async def seed():
                 status=TaskStatus.TODO,
                 priority=TaskPriority.LOW,
                 created_by="admin",
-            )
+            ),
         ]
         for t in tasks:
             session.add(t)
         await session.commit()
         print(f"✅ Seeded {len(tasks)} tasks")
+
 
 if __name__ == "__main__":
     asyncio.run(seed())

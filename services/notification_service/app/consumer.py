@@ -4,6 +4,7 @@ from aiokafka import AIOKafkaConsumer
 from .config import Settings
 from .notifier import send_notification
 
+
 class TaskEventConsumer:
     def __init__(self, settings: Settings):
         self.settings = settings
@@ -12,7 +13,7 @@ class TaskEventConsumer:
             settings.task_updated_topic,
             bootstrap_servers=settings.kafka_bootstrap_servers,
             group_id="notification-group",
-            value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+            value_deserializer=lambda m: json.loads(m.decode("utf-8")),
             auto_offset_reset="earliest",
             enable_auto_commit=True,
         )

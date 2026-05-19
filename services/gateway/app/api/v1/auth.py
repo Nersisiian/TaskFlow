@@ -8,8 +8,9 @@ router = APIRouter(prefix="/auth", tags=["auth"])
 # Dummy user store for demonstration
 USERS = {
     "admin": {"password": "adminpass", "role": "admin"},
-    "user": {"password": "userpass", "role": "user"}
+    "user": {"password": "userpass", "role": "user"},
 }
+
 
 @router.post("/login")
 async def login(username: str, password: str, settings: Settings = Depends(get_settings)):
@@ -19,7 +20,7 @@ async def login(username: str, password: str, settings: Settings = Depends(get_s
     payload = {
         "sub": username,
         "role": user["role"],
-        "exp": datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes)
+        "exp": datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes),
     }
     token = jwt.encode(payload, settings.jwt_secret, algorithm=settings.jwt_algorithm)
     return {"access_token": token, "token_type": "bearer"}

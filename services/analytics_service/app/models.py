@@ -1,8 +1,10 @@
 ﻿from sqlalchemy import Column, Integer, Date, func
 from sqlalchemy.orm import DeclarativeBase
 
+
 class Base(DeclarativeBase):
     pass
+
 
 class DailyTaskCount(Base):
     __tablename__ = "analytics_daily_counts"

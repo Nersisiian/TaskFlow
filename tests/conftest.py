@@ -3,6 +3,7 @@ from httpx import AsyncClient, ASGITransport
 from services.task_service.app.main import app
 from services.task_service.app.database import engine, Base
 
+
 @pytest_asyncio.fixture(scope="session")
 async def async_client():
     async with engine.begin() as conn:

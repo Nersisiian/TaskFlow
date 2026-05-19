@@ -4,6 +4,7 @@ from .services import AnalyticsService
 
 logger = logging.getLogger(__name__)
 
+
 async def run_daily_aggregation():
     while True:
         try:

@@ -4,18 +4,22 @@ from sqlalchemy import String, Text, DateTime, Enum, Integer, Index
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 import enum
 
+
 class Base(DeclarativeBase):
     pass
+
 
 class TaskStatus(str, enum.Enum):
     TODO = "todo"
     IN_PROGRESS = "in_progress"
     DONE = "done"
 
+
 class TaskPriority(str, enum.Enum):
     LOW = "low"
     MEDIUM = "medium"
     HIGH = "high"
+
 
 class Task(Base):
     __tablename__ = "tasks"
@@ -29,7 +33,9 @@ class Task(Base):
     created_by: Mapped[str] = mapped_column(String(36), nullable=False)
     due_date: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow)
-    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), default=datetime.utcnow, onupdate=datetime.utcnow
+    )
 
     __table_args__ = (
         Index("ix_tasks_status_priority", "status", "priority"),

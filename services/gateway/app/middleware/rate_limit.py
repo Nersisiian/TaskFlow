@@ -4,6 +4,7 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from redis.asyncio import Redis
 from ..config import get_settings
 
+
 class RateLimitMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         settings = get_settings()

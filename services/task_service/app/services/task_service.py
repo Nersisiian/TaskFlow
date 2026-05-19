@@ -10,6 +10,7 @@ from ..config import get_settings
 logger = logging.getLogger(__name__)
 settings = get_settings()
 
+
 class TaskService:
     def __init__(self, repo: TaskRepository, producer: KafkaEventProducer):
         self.repo = repo
@@ -25,12 +26,15 @@ class TaskService:
             due_date=task_data.due_date,
         )
         task = await self.repo.create(task)
-        await self.producer.send_event(settings.task_created_topic, {
-            "task_id": str(task.id),
-            "title": task.title,
-            "status": task.status.value,
-            "created_by": user_id,
-        })
+        await self.producer.send_event(
+            settings.task_created_topic,
+            {
+                "task_id": str(task.id),
+                "title": task.title,
+                "status": task.status.value,
+                "created_by": user_id,
+            },
+        )
         logger.info(f"Task {task.id} created")
         return task
 
@@ -41,10 +45,13 @@ class TaskService:
         for field, value in update_data.dict(exclude_unset=True).items():
             setattr(task, field, value)
         task = await self.repo.update(task)
-        await self.producer.send_event(settings.task_updated_topic, {
-            "task_id": str(task.id),
-            "status": task.status.value,
-        })
+        await self.producer.send_event(
+            settings.task_updated_topic,
+            {
+                "task_id": str(task.id),
+                "status": task.status.value,
+            },
+        )
         return task
 
     async def delete_task(self, task_id: UUID) -> None:

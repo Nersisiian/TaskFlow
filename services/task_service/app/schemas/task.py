@@ -3,6 +3,7 @@ from typing import Optional
 from datetime import datetime
 from ..models.task import TaskStatus, TaskPriority
 
+
 class TaskCreate(BaseModel):
     title: str = Field(..., max_length=200)
     description: Optional[str] = ""
@@ -11,6 +12,7 @@ class TaskCreate(BaseModel):
     assignee_id: Optional[str] = None
     due_date: Optional[datetime] = None
 
+
 class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
@@ -18,6 +20,7 @@ class TaskUpdate(BaseModel):
     priority: Optional[TaskPriority] = None
     assignee_id: Optional[str] = None
     due_date: Optional[datetime] = None
+
 
 class TaskOut(BaseModel):
     id: str

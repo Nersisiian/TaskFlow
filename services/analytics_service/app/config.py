@@ -1,6 +1,7 @@
 ﻿from pydantic_settings import BaseSettings
 from functools import lru_cache
 
+
 class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://taskuser:taskpass@postgres:5432/taskdb"
     redis_url: str = "redis://redis:6379/0"
@@ -10,6 +11,7 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
+
 
 @lru_cache()
 def get_settings() -> Settings:

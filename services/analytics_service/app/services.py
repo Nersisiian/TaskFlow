@@ -8,6 +8,7 @@ from .repositories import AnalyticsRepository
 
 logger = logging.getLogger(__name__)
 
+
 class AnalyticsService:
     def __init__(self):
         settings = get_settings()
@@ -19,8 +20,7 @@ class AnalyticsService:
             rows = await repo.get_daily_counts()
             for day, created, completed in rows:
                 key = f"analytics:daily:{day.isoformat()}"
-                await self.redis.hset(key, mapping={
-                    "created": created,
-                    "completed": completed or 0
-                })
+                await self.redis.hset(
+                    key, mapping={"created": created, "completed": completed or 0}
+                )
             logger.info(f"Aggregated {len(rows)} daily records into Redis")

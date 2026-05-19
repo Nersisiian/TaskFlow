@@ -1,5 +1,6 @@
 ﻿from pydantic_settings import BaseSettings
 
+
 class Settings(BaseSettings):
     kafka_bootstrap_servers: str = "kafka:9092"
     task_created_topic: str = "task_created"

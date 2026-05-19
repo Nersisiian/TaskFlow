@@ -4,6 +4,7 @@ from ...config import get_settings
 
 router = APIRouter(prefix="/stats", tags=["analytics"])
 
+
 @router.get("/daily/{day}")
 async def get_daily_stats(day: str):
     settings = get_settings()

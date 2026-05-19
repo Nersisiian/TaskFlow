@@ -5,9 +5,10 @@ from .config import get_settings, Settings
 
 security = HTTPBearer()
 
+
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
-    settings: Settings = Depends(get_settings)
+    settings: Settings = Depends(get_settings),
 ) -> dict:
     token = credentials.credentials
     try:
@@ -20,9 +21,11 @@ async def get_current_user(
     except JWTError:
         raise HTTPException(status_code=401, detail="Could not validate credentials")
 
+
 def require_role(required_role: str):
     async def role_checker(current_user: dict = Depends(get_current_user)):
         if current_user["role"] != required_role:
             raise HTTPException(status_code=403, detail="Insufficient permissions")
         return current_user
+
     return role_checker
