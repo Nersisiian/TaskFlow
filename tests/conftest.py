@@ -1,7 +1,8 @@
 ﻿import pytest_asyncio
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
+
+from services.task_service.app.database import Base, engine
 from services.task_service.app.main import app
-from services.task_service.app.database import engine, Base
 
 
 @pytest_asyncio.fixture(scope="session")

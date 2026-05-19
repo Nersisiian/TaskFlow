@@ -1,7 +1,9 @@
 ﻿from datetime import datetime, timedelta
+
 from fastapi import APIRouter, Depends, HTTPException
 from jose import jwt
-from ...config import get_settings, Settings
+
+from ...config import Settings, get_settings
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 

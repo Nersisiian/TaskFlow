@@ -1,7 +1,7 @@
-﻿import json
-import logging
-from datetime import date
+﻿import logging
+
 from redis.asyncio import Redis
+
 from .config import get_settings
 from .database import async_session
 from .repositories import AnalyticsRepository

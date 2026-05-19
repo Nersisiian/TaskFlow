@@ -1,5 +1,6 @@
 ﻿from fastapi import APIRouter
 from redis.asyncio import Redis
+
 from ...config import get_settings
 
 router = APIRouter(prefix="/stats", tags=["analytics"])

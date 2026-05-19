@@ -1,5 +1,6 @@
 ﻿import asyncio
 import logging
+
 from .config import Settings
 from .consumer import TaskEventConsumer
 

@@ -1,7 +1,8 @@
 ﻿from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .middleware.rate_limit import RateLimitMiddleware
+
 from .api.v1 import auth, tasks
+from .middleware.rate_limit import RateLimitMiddleware
 
 app = FastAPI(title="TaskFlow API Gateway", version="1.0.0")
 

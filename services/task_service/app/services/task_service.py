@@ -1,11 +1,12 @@
 ﻿import logging
+from typing import List
 from uuid import UUID
-from typing import List, Optional
-from ..repositories.task_repo import TaskRepository
-from ..models.task import Task, TaskStatus, TaskPriority
-from ..events.kafka_producer import KafkaEventProducer
-from ..schemas.task import TaskCreate, TaskUpdate
+
 from ..config import get_settings
+from ..events.kafka_producer import KafkaEventProducer
+from ..models.task import Task
+from ..repositories.task_repo import TaskRepository
+from ..schemas.task import TaskCreate, TaskUpdate
 
 logger = logging.getLogger(__name__)
 settings = get_settings()

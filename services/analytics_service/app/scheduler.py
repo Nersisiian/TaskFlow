@@ -1,5 +1,6 @@
 ﻿import asyncio
 import logging
+
 from .services import AnalyticsService
 
 logger = logging.getLogger(__name__)

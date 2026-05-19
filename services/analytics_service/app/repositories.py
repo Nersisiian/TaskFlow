@@ -1,7 +1,7 @@
-﻿from sqlalchemy import select, func, cast, Date
+﻿from sqlalchemy import Date, cast, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from services.task_service.app.models.task import Task  # import from task service model
-from .models import DailyTaskCount
 
 
 class AnalyticsRepository:

@@ -1,4 +1,4 @@
-﻿from sqlalchemy import Column, Integer, Date, func
+﻿from sqlalchemy import Column, Date, Integer
 from sqlalchemy.orm import DeclarativeBase
 
 

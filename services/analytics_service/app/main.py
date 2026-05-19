@@ -1,8 +1,10 @@
-﻿from fastapi import FastAPI
-import asyncio
+﻿import asyncio
+
+from fastapi import FastAPI
+
 from .api.v1 import stats as stats_router
-from .scheduler import run_daily_aggregation
 from .kafka_consumer import consume_events
+from .scheduler import run_daily_aggregation
 
 app = FastAPI(title="Analytics Service", version="1.0.0")
 

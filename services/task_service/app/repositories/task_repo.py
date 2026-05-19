@@ -1,8 +1,10 @@
-﻿from typing import Optional, List
+﻿from typing import List, Optional
 from uuid import UUID
-from sqlalchemy import select, func
+
+from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
-from ..models.task import Task, TaskStatus, TaskPriority
+
+from ..models.task import Task, TaskPriority, TaskStatus
 
 
 class TaskRepository:

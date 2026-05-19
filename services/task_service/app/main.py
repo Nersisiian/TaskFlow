@@ -1,4 +1,5 @@
 ﻿from fastapi import FastAPI
+
 from .api.v1 import tasks as task_router
 from .database import engine
 from .models.task import Base

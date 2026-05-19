@@ -1,6 +1,7 @@
-﻿import asyncio
-import json
+﻿import json
+
 from aiokafka import AIOKafkaConsumer
+
 from .config import get_settings
 
 

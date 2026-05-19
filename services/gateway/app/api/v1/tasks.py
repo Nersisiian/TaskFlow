@@ -1,7 +1,8 @@
 ﻿from fastapi import APIRouter, Depends, Request
+
+from ...config import get_settings
 from ...dependencies import get_current_user, require_role
 from ...services.task_client import TaskServiceClient
-from ...config import get_settings
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 

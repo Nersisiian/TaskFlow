@@ -1,13 +1,13 @@
 ﻿import asyncio
-from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
-import uuid
-from datetime import datetime, timedelta
 import sys
+from datetime import datetime, timedelta
+
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy.orm import sessionmaker
 
 sys.path.append("..")
-from services.task_service.app.models.task import Task, TaskStatus, TaskPriority
 from services.task_service.app.config import get_settings
+from services.task_service.app.models.task import Task, TaskPriority, TaskStatus
 
 
 async def seed():
