@@ -1,12 +1,14 @@
 ﻿import os
 import sys
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import pytest_asyncio
 from httpx import AsyncClient, ASGITransport
 from services.task_service.app.main import app
 from services.task_service.app.models.task import Base
 from services.task_service.app.database import write_engine
+
 
 @pytest_asyncio.fixture
 async def async_client():
