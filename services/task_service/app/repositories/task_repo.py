@@ -4,6 +4,7 @@ from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.task import Task, TaskStatus, TaskPriority
 
+
 class TaskRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
@@ -20,7 +21,7 @@ class TaskRepository:
         skip: int = 0,
         limit: int = 20,
         sort_by: str = "created_at",
-        sort_order: str = "desc"
+        sort_order: str = "desc",
     ) -> List[Task]:
         query = select(Task)
         if assignee_id:

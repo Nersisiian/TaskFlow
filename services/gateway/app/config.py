@@ -2,6 +2,7 @@
 from functools import lru_cache
 from typing import List
 
+
 class Settings(BaseSettings):
     app_name: str = "TaskFlow API Gateway"
     host: str = "0.0.0.0"
@@ -19,6 +20,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         case_sensitive = False
+
 
 @lru_cache()
 def get_settings() -> Settings:
