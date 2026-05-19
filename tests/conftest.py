@@ -4,10 +4,11 @@ import sys
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import pytest_asyncio
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
+
+from services.task_service.app.database import write_engine
 from services.task_service.app.main import app
 from services.task_service.app.models.task import Base
-from services.task_service.app.database import write_engine
 
 
 @pytest_asyncio.fixture
