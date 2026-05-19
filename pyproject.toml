@@ -5,7 +5,6 @@ target-version = ['py312']
 [tool.ruff]
 line-length = 100
 select = ["E", "F", "I", "N"]
-ignore = ["E501"]
 
 [tool.isort]
 profile = "black"
