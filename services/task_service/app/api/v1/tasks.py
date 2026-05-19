@@ -1,4 +1,4 @@
-﻿from typing import AsyncGenerator, List
+from typing import AsyncGenerator, List
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Query
@@ -33,7 +33,7 @@ async def list_tasks(
     skip: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
     sort_by: str = Query("created_at"),
-    sort_order: str = Query("desc", regex="^(asc|desc)$"),
+    sort_order: str = Query("desc", pattern="^(asc|desc)$"),
     x_user_id: str = Header(..., alias="X-User-ID"),
     service: TaskService = Depends(get_task_service),
 ):
@@ -81,3 +81,4 @@ async def delete_task(
         await service.delete_task(task_id)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
+

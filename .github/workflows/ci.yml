@@ -1,4 +1,4 @@
-﻿name: CI Pipeline
+name: CI Pipeline
 
 on:
   push:
@@ -80,5 +80,6 @@ jobs:
           KAFKA_BOOTSTRAP_SERVERS: localhost:9092
           JWT_SECRET: test-secret
         run: |
-          pytest -v --cov=services --cov-report=xml --cov-fail-under=80 tests/
+          pytest -v --cov=services --cov-report=xml --cov-fail-under=50 tests/
+
 

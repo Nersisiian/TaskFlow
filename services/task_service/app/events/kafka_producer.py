@@ -1,18 +1,14 @@
 ﻿import json
-
 from aiokafka import AIOKafkaProducer
-
 from ..config import get_settings
-
 
 class KafkaEventProducer:
     def __init__(self):
         settings = get_settings()
         self.producer = AIOKafkaProducer(
             bootstrap_servers=settings.kafka_bootstrap_servers,
-            value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+            value_serializer=lambda v: json.dumps(v).encode('utf-8'),
             retry_backoff_ms=500,
-            max_in_flight_requests_per_connection=1,
         )
 
     async def start(self):
