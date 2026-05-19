@@ -1,4 +1,4 @@
-﻿name: CI Pipeline
+name: CI Pipeline
 
 on:
   push:
@@ -68,7 +68,7 @@ jobs:
         run: ruff check services/ tests/
 
       - name: Type check with mypy
-        run: mypy services/ --ignore-missing-imports
+        run: mypy services/ --ignore-missing-imports --explicit-package-bases
 
       - name: Check imports with isort
         run: isort --check-only services/ tests/
