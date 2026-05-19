@@ -1,12 +1,14 @@
-﻿from typing import List, AsyncGenerator
-from fastapi import APIRouter, Depends, HTTPException, Query, Header
+﻿from typing import AsyncGenerator, List
 from uuid import UUID
-from ...database import get_write_db
-from ...repositories.task_repo import TaskRepository
-from ...services.task_service import TaskService
-from ...events.kafka_producer import KafkaEventProducer
-from ...schemas.task import TaskCreate, TaskUpdate, TaskOut
+
+from fastapi import APIRouter, Depends, Header, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from ...database import get_write_db
+from ...events.kafka_producer import KafkaEventProducer
+from ...repositories.task_repo import TaskRepository
+from ...schemas.task import TaskCreate, TaskOut, TaskUpdate
+from ...services.task_service import TaskService
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 

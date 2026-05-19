@@ -1,4 +1,5 @@
-﻿from typing import Optional, Any
+﻿from typing import Any, Optional
+
 import aiohttp
 from fastapi import HTTPException
 
