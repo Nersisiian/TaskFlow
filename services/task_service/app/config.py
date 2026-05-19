@@ -1,10 +1,9 @@
-﻿from functools import lru_cache
-
-from pydantic_settings import BaseSettings
-
+﻿from pydantic_settings import BaseSettings
+from functools import lru_cache
 
 class Settings(BaseSettings):
     database_url: str = "postgresql+asyncpg://taskuser:taskpass@postgres:5432/taskdb"
+    database_read_url: str = "postgresql+asyncpg://taskuser:taskpass@postgres:5432/taskdb"
     kafka_bootstrap_servers: str = "kafka:9092"
     task_created_topic: str = "task_created"
     task_updated_topic: str = "task_updated"
@@ -13,8 +12,6 @@ class Settings(BaseSettings):
 
     class Config:
         env_file = ".env"
-        case_sensitive = False
-
 
 @lru_cache()
 def get_settings() -> Settings:
