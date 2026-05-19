@@ -1,11 +1,8 @@
-﻿from typing import List, Optional
+﻿from typing import Optional, List, Sequence
 from uuid import UUID
-
-from sqlalchemy import func, select
+from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
-
-from ..models.task import Task, TaskPriority, TaskStatus
-
+from ..models.task import Task, TaskStatus, TaskPriority
 
 class TaskRepository:
     def __init__(self, session: AsyncSession):
@@ -23,7 +20,7 @@ class TaskRepository:
         skip: int = 0,
         limit: int = 20,
         sort_by: str = "created_at",
-        sort_order: str = "desc",
+        sort_order: str = "desc"
     ) -> List[Task]:
         query = select(Task)
         if assignee_id:
@@ -36,7 +33,7 @@ class TaskRepository:
         query = query.order_by(order_col.desc() if sort_order == "desc" else order_col.asc())
         query = query.offset(skip).limit(limit)
         result = await self.session.execute(query)
-        return result.scalars().all()
+        return list(result.scalars().all())
 
     async def create(self, task: Task) -> Task:
         self.session.add(task)
@@ -60,4 +57,5 @@ class TaskRepository:
         if filters.get("status"):
             query = query.where(Task.status == filters["status"])
         result = await self.session.execute(query)
-        return result.scalar()
+        count = result.scalar()
+        return count if count is not None else 0
