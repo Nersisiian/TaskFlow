@@ -1,16 +1,19 @@
-﻿import pytest_asyncio
-from httpx import ASGITransport, AsyncClient
+﻿import os
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from services.task_service.app.database import Base, engine
+import pytest_asyncio
+from httpx import AsyncClient, ASGITransport
 from services.task_service.app.main import app
+from services.task_service.app.models.task import Base
+from services.task_service.app.database import write_engine
 
-
-@pytest_asyncio.fixture(scope="session")
+@pytest_asyncio.fixture
 async def async_client():
-    async with engine.begin() as conn:
+    async with write_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as client:
         yield client
-    async with engine.begin() as conn:
+    async with write_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
