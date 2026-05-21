@@ -81,5 +81,3 @@ async def delete_task(
         await service.delete_task(task_id)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
-
-
