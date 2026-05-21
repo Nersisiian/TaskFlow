@@ -1,5 +1,7 @@
 ﻿import json
+
 from aiokafka import AIOKafkaProducer
+
 from ..config import get_settings
 
 
