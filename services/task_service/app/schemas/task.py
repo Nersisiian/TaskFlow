@@ -1,7 +1,8 @@
 ﻿from datetime import datetime
 from typing import Optional
+from uuid import UUID
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from ..models.task import TaskPriority, TaskStatus
 
@@ -25,7 +26,8 @@ class TaskUpdate(BaseModel):
 
 
 class TaskOut(BaseModel):
-    id: str
+    model_config = ConfigDict(from_attributes=True)
+    id: UUID
     title: str
     description: Optional[str]
     status: TaskStatus
@@ -35,6 +37,3 @@ class TaskOut(BaseModel):
     due_date: Optional[datetime]
     created_at: datetime
     updated_at: datetime
-
-    class Config:
-        from_attributes = True
